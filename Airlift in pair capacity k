@@ -1,0 +1,48 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	long int cap,n;
+	cin>>cap>>n;
+	priority_queue<int> q;
+	long int f;
+	for(long int i=0; i<n; i++)
+	{
+		cin>>f;
+		q.push(f);
+	}
+
+	vector<long int> v;
+	for(long int i=0; i<n; i++)
+	{
+		v.push_back(q.top());
+		q.pop();
+	}
+	long int planes=0;
+	long int m=0;
+	long int i=n-1;
+	while(m<=i)
+	{
+		if(v[m]>cap|| v[i]>cap)
+		{
+			cout<<-1;
+			exit(0);
+		}
+		if(v[m]+v[i]<=cap)
+		{
+			m++;
+			planes++;
+			i--;
+		}
+		else
+		{
+			m++;
+			planes++;
+		}
+		
+	}
+	cout<<planes;	
+}
